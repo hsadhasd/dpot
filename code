@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+<style>
+	h1 {text-align: center; font-size: 62px;}
+	p {text-align: center;}
+	div {text-align: center;}
+	body {font-family: 'Courier New', monospace; background-color: #292928; font-size: 50px; color: ghostwhite;}
+	#countdown {font-size: 48px; font-family: 'Courier New', monospace; color: ghostwhite; font-weight: bold;}
+
+</style>
+<meta charset="utf-8">
+<title>dPot.crypto</title>
+</head>
+	
+<body>
+	<h1>dPot</h1>
+	<p style="font-size: 60px;">Decentralized Jackpot</p>
+	<p id="currentpot"; style="font-size: 75px; font-weight: bold;">$500</p>
+	<p>Jackpot Ends In</p>
+
+	<p id="countdown"></p>
+	
+</body>
+<div style="line-height:25%;">
+    <br>
+</div>
+
+<div class="card">
+	<span id="countdown"></span>
+</div>
+<script type="text/javascript">
+	var timeInSecs;
+	var ticker;
+
+	function startTimer(secs) {
+	timeInSecs = parseInt(secs);
+	ticker = setInterval("tick()", 1000); 
+	}
+
+	function tick( ) {
+	var secs = timeInSecs;
+	if (secs > 0) {
+	timeInSecs--; 
+	}
+	else {
+	clearInterval(ticker);
+	startTimer(1*60);
+	}
+
+	var days= Math.floor(secs/86400); 
+	secs %= 86400;
+	var hours= Math.floor(secs/3600);
+	secs %= 3600;
+	var mins = Math.floor(secs/60);
+	secs %= 60;
+	var pretty = ( (days < 10 ) ? "0" : "" ) + days + ":" + ( (hours < 10 ) ? "0" : "" ) + hours + ":" + ( (mins < 10) ? "0" : "" ) + mins + ":" + ( (secs < 10) ? "0" : "" ) + secs;
+
+	document.getElementById("countdown").innerHTML = pretty;
+	}
+
+	startTimer(1*60);
+</script>
+
+
+</html>
